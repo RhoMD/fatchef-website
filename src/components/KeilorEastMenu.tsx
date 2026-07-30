@@ -18,10 +18,10 @@ const KeilorEastMenu: React.FC = () => {
     <div className="menu-page" style={{ padding: '3rem 1rem', backgroundColor: '#fafafa' }}>
       <div className="menu-container" style={{ maxWidth: '1000px', margin: '0 auto', textAlign: 'center' }}>
         
-        {/* Page 1: Breakfast */}
+        {/* Page 1: Breakfast & Lunch */}
         <img
-          src="/assets/menu_keilor_east_breakfast.png"
-          alt="FAT CHEF Keilor East Menu - Breakfast"
+          src="/assets/menu_keilor_east_breakfast.webp"
+          alt="FAT CHEF Keilor East Menu - Breakfast & Lunch"
           className="menu-image"
           loading="eager"
           style={imageStyle}
@@ -29,17 +29,26 @@ const KeilorEastMenu: React.FC = () => {
 
         {/* Page 2: Dinner */}
         <img
-          src="/assets/menu_keilor_east_dinner.png"
+          src="/assets/menu_keilor_east_dinner.webp"
           alt="FAT CHEF Keilor East Menu - Dinner"
           className="menu-image"
           loading="lazy"
           style={{ ...imageStyle, marginTop: '3rem' }} // Add margin top for spacing
         />
-        
-        {/* Page 3: Drinks */}
+
+        {/* Page 3: Coffee & Cold Drinks */}
         <img
-          src="/assets/menu_keilor_east_drinks.png"
-          alt="FAT CHEF Keilor East Menu - Drinks"
+          src="/assets/menu_keilor_east_coffee.webp"
+          alt="FAT CHEF Keilor East Menu - Coffee & Cold Drinks"
+          className="menu-image"
+          loading="lazy"
+          style={{ ...imageStyle, marginTop: '3rem' }}
+        />
+
+        {/* Page 4: Cocktails & Alcohol Drinks */}
+        <img
+          src="/assets/menu_keilor_east_drinks.webp"
+          alt="FAT CHEF Keilor East Menu - Cocktails & Alcohol Drinks"
           className="menu-image"
           loading="lazy"
           style={{ ...imageStyle, marginTop: '3rem' }}
