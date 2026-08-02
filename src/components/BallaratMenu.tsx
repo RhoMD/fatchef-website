@@ -247,66 +247,78 @@ const bottleBeers: Section = {
 /* ---------- Data: Bar Menu ---------- */
 const redWine: Section = {
   title: "RED WINE",
+  subtitle: "GLASS / BOTTLE",
   items: [
-    { name: "Pinot Noir" },
-    { name: "Shiraz" },
-    { name: "Merlot" },
-    { name: "Cabernet Sauvignon" },
+    { name: "Shiraz", price: "9 / 35", dots: true },
+    { name: "Cabernet Sauvignon", price: "9 / 35", dots: true },
+    { name: "Merlot", price: "9 / 35", dots: true },
+    { name: "Pinot Noir", price: "9 / 35", dots: true },
   ],
 };
 
 const whiteWine: Section = {
   title: "WHITE WINE",
+  subtitle: "GLASS / BOTTLE",
   items: [
-    { name: "Sauvignon Blanc" },
-    { name: "Pinot Grigio" },
-    { name: "Chardonnay" },
-    { name: "Moscato" },
-    { name: "Rose" },
+    { name: "Sauvignon Blanc", price: "9 / 35", dots: true },
+    { name: "Pinot Grigio", price: "9 / 35", dots: true },
+    { name: "Chardonnay", price: "9 / 35", dots: true },
+    { name: "Moscato", price: "9 / 35", dots: true },
+    { name: "Rose", price: "9", dots: true },
   ],
 };
 
 const sparkling: Section = {
-  title: "SPARKLING PROSECCO",
+  title: "SPARKLING",
   items: [
     { name: "Prosecco" },
-    { name: "Brut" },
+    { name: "Brut Cuvee" },
   ],
 };
 
-const spirits: Section = {
-  title: "SPIRITS",
+const gin: Section = {
+  title: "GIN",
   items: [
-    { name: "Vodka" },
-    { name: "Gin" },
-  ],
-};
-
-const rum: Section = {
-  title: "RUM",
-  items: [
-    { name: "Bacardi" },
-    { name: "Captain Morgan Spiced" },
-    { name: "Bundaberg" },
-    { name: "Kraken Dark Rum" },
+    { name: "Hendricks" },
+    { name: "Bombay Sapphire" },
+    { name: "Tanqueray" },
   ],
 };
 
 const tequila: Section = {
   title: "TEQUILA",
   items: [
+    { name: "Patron Reposado" },
     { name: "Sierra" },
-    { name: "1800 Silver" },
+  ],
+};
+
+const rum: Section = {
+  title: "RUM",
+  items: [
+    { name: "Bacardi White Rum" },
+    { name: "Bundaberg" },
+    { name: "Kraken Dark Rum" },
+  ],
+};
+
+const vodka: Section = {
+  title: "VODKA",
+  items: [
+    { name: "Absolut" },
+    { name: "Absolut Raspberry" },
+    { name: "Absolut Vanilla" },
   ],
 };
 
 const bourbon: Section = {
-  title: "BOURBON",
+  title: "BOURBON WHISKEY",
   items: [
-    { name: "Jim Beam" },
+    { name: "Maker's Mark" },
     { name: "Jack Daniels" },
-    { name: "Makers Mark" },
+    { name: "Jim Beam" },
     { name: "Wild Turkey" },
+    { name: "Woodford Reserve" },
   ],
 };
 
@@ -317,98 +329,46 @@ const whiskey: Section = {
     { name: "Johnny Walker Black" },
     { name: "Canadian Club" },
     { name: "Jameson" },
-    { name: "Chivas 12 years" },
-    { name: "Chivas 18 years" },
-    { name: "Ardbeg Single Malt" },
-  ],
-};
-
-const liqueur: Section = {
-  title: "LIQUEUR",
-  items: [
-    { name: "Midori" },
-    { name: "Southern Comfort" },
-    { name: "Kahlua" },
-    { name: "Malibu" },
-    { name: "Sambuca" },
-    { name: "Frangelico" },
-    { name: "Baileys" },
-    { name: "Brandy" },
+    { name: "Chivas 12 Years" },
+    { name: "Chivas 18 Years" },
+    { name: "Talisker 10 Years" },
+    { name: "Ardbeg" },
+    { name: "Glenfiddich" },
   ],
 };
 
 const cocktails: Section = {
   title: "COCKTAILS",
+  subtitle: "GLASS $19 · JUG $54",
   inverse: true,
   boxed: true,
   items: [
-    { name: "ESPRESSO MARTINI", desc: "Vodka, Kahlua, espresso shot, simple syrup." },
-    { name: "MOJITO", desc: "White rum, lime wedges, simple syrup, mint, soda." },
-    { name: "MARGARITA", desc: "Tequila, triple sec, simple syrup, lime juice." },
-    { name: "AMARETTO SOUR", desc: "Disaronno, lemon juice, simple syrup, egg white." },
-    { name: "BLUE GARDEN", desc: "Gin, Blue Curacao, elderflower syrup, lemon juice, egg white." },
-    { name: "LONG ISLAND", desc: "Vodka, Tequila, Gin, Rum, triple sec, simple syrup topped with coke." },
-    { name: "PINA COLADA", desc: "White rum, Malibu, pineapple juice, vanilla ice-cream, fresh kiwi." },
-    { name: "SOURPUSS", desc: "Vodka, lemon juice, simple syrup, raspberry cordial, pink grapefruit juice, fairy floss." },
-    { name: "PASSIONELLA", desc: "Vodka, Peach Schnapps, simple syrup, apple juice, passionfruit puree." },
-    { name: "COSMOPOLITAN", desc: "Vodka, triple sec, lime juice, cranberry juice, simple syrup." },
-    { name: "FROZEN DAIQUIRI", desc: "Rum, triple sec, lime juice, simple syrup. Choice of flavours: Mango, Strawberry." },
-    { name: "MOSCOW MULE", desc: "Vodka, lime juice, ginger beer, simple syrup." },
-    { name: "BLUE COCONUT MOJITO", desc: "Rum, Blue Curacao, lime, mint, simple syrup, coconut water." },
-    { name: "SEX ON THE BEACH", desc: "Vodka, peach schnapps, orange juice, cranberry juice, simple syrup." },
-    { name: "FRUIT TINGLE", desc: "Vodka, Blue Curacao, grenadine, lemonade." },
-    { name: "SOLTI", desc: "White rum, Blue Curacao, pineapple juice, grenadine." },
+    { name: "BULLFROG", desc: "Vodka, Tequila, rum, Cointreau, gin, sugar syrup, lemon juice, Blue Curacao, topped up with Red Bull." },
+    { name: "ESPRESSO MARTINI", desc: "Vodka, Kahlua, espresso and simple syrup, shaken and served in martini glass." },
+    { name: "OLD FASHIONED", desc: "Bourbon whiskey, simple syrup, classic bitters, stirred and served over ice in rock glass." },
+    { name: "MOJITO", desc: "White rum, lime wedges, mint and simple syrup, muddled and served over crushed ice with a dash of soda." },
+    { name: "PINK GIN SPRITZ", desc: "Sparkling wine, pink gin, topped with lemonade and garnished with strawberry in wine glass." },
+    { name: "LONG ISLAND", desc: "Vodka, Tequila, gin, rum, Cointreau, simple syrup and lemon juice, shaken and served on a bed of Coca-Cola." },
+    { name: "PINA'S COLADA", desc: "Malibu, rum, pineapple juice, vanilla ice cream and fresh kiwi, blended together." },
+    { name: "SOURPUSS", desc: "Raspberry vodka, lemon juice, sugar syrup and pink grapefruit juice, shaken and served in martini glass with fairy floss on top." },
+    { name: "PASSIONELLA", desc: "Vodka, lemon juice, apple juice, peach schnapps, passionfruit and simple syrup, served in vanilla sugar rimmed martini glass." },
+    { name: "COSMOPOLITAN", desc: "Vodka, Cointreau, freshly squeezed lime juice and cranberry juice, shaken and served." },
+    { name: "FROZEN DAIQUIRI", desc: "Rum, Cointreau, lime juice and sugar syrup, blended with ice. Choice of flavour: lime, mango or strawberry." },
+    { name: "MOSCOW MULE", desc: "Vodka, fresh lime wedges and sugar syrup, topped up with spicy ginger beer." },
+    { name: "TOBLERONE", desc: "Baileys, Frangelico and Kahlua, blended with ice cream." },
+    { name: "SEX ON THE BEACH", desc: "Vodka, peach schnapps, orange juice and cranberry juice." },
+    { name: "FRUIT TINGLE", desc: "Vodka, Blue Curacao, lemonade and grenadine." },
+    { name: "MARGARITA", desc: "Tequila, triple sec, simple syrup and lime juice." },
   ],
 };
 
 const shots: Section = {
   title: "SHOTS",
   items: [
-    { name: "FOURTH OF JULY", price: "9", dots: true, desc: "Vodka, Blue Curacao, grenadine." },
-    { name: "MELON BALL", price: "9", dots: true, desc: "Vodka, melon liqueur, pineapple juice." },
-    { name: "BUTTERY NIPPLE", price: "9", dots: true, desc: "Butterscotch Schnapps, Baileys." },
-    { name: "BRAIN HEMMORAGE", price: "9", dots: true, desc: "Peach Schnapps, Baileys, grenadine." },
-    { name: "JAGER BOMB", price: "12", dots: true, desc: "Jagermeister, Red Bull." },
-    { name: "WP SHOT", price: "9", dots: true, desc: "Vodka, Peach Schnapps, cranberry juice, fresh lime." },
+    { name: "MIND ERASER", price: "9", dots: true, desc: "Vodka, Kahlua, sparkling water." },
     { name: "JAM DONUT", price: "9", dots: true, desc: "Chambord, Baileys, sugar rim." },
-    { name: "B52", price: "9", dots: true, desc: "Kahlua, Baileys, Grand Marnier." },
-  ],
-};
-
-const onTap: Section = {
-  title: "ON TAP",
-  subtitle: "FAT CHEF DRAUGHT",
-  items: [
-    { name: "Schooner" },
-    { name: "Pint" },
-    { name: "Jug" },
-    { name: "3L Tower" },
-  ],
-};
-
-const ciderCruisers: Section = {
-  title: "CIDER & CRUISERS",
-  items: [
-    { name: "Strawberry & Lime Rekorderlig" },
-    { name: "Apple Cider" },
-    { name: "Vodka Cruisers with flavours" },
-  ],
-};
-
-const beers: Section = {
-  title: "BEER",
-  items: [
-    { name: "Red Duck Draught (Local)" },
-    { name: "Red Duck Pale Ale (Local)" },
-    { name: "Great Northern" },
-    { name: "Carlton Dry" },
-    { name: "Pure Blonde" },
-    { name: "Cascade Light" },
-    { name: "Carlton Draught" },
-    { name: "Corona" },
-    { name: "Victoria Bitter" },
-    { name: "Furphy Ale" },
-    { name: "Great Northern – Zero Alcohol" },
+    { name: "COOL COLADA", price: "9", dots: true, desc: "White rum, coconut liqueur, pineapple juice." },
+    { name: "KAMIKAZE", price: "9", dots: true, desc: "Vodka, orange liqueur, lime juice." },
   ],
 };
 
@@ -546,9 +506,10 @@ export default function BallaratMenu() {
             <SectionBlock {...redWine} />
             <SectionBlock {...whiteWine} />
             <SectionBlock {...sparkling} />
-            <SectionBlock {...spirits} />
-            <SectionBlock {...rum} />
+            <SectionBlock {...gin} />
             <SectionBlock {...tequila} />
+            <SectionBlock {...rum} />
+            <SectionBlock {...vodka} />
           </div>
 
           {/* Middle: cocktails (黑底盒) */}
@@ -556,23 +517,11 @@ export default function BallaratMenu() {
             <SectionBlock {...cocktails} />
           </div>
 
-          {/* Right: dark spirits + shots */}
+          {/* Right: shots + dark spirits */}
           <div className="stack">
+            <SectionBlock {...shots} />
             <SectionBlock {...bourbon} />
             <SectionBlock {...whiskey} />
-            <SectionBlock {...liqueur} />
-            <SectionBlock {...shots} />
-          </div>
-        </div>
-
-        <div className="drinks-grid">
-          <div className="left-col">
-            <SectionBlock {...onTap} />
-            <SectionBlock {...ciderCruisers} />
-          </div>
-
-          <div className="right-col">
-            <SectionBlock {...beers} />
           </div>
         </div>
       </div>
