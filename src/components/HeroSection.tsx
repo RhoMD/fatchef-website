@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import './HeroSection.css';
 import './BookATable.css'; // Import styles for the button
 import heroVideo from '../assets/hero.mp4';
@@ -6,15 +7,60 @@ import { logEvent } from '../analytics';
 
 import heroPoster from '../assets/hero-poster.jpg';
 
+const LOCATIONS = [
+  {
+    name: 'FAT CHEF Keilor East',
+    label: 'Keilor East',
+    menuPath: '/menu/keilor-east',
+    bookingUrl:
+      'https://inline.app/booking/-Mpd7JG15ak_5in4-yoo:inline-live-2/-Mpd7JtCkSmw4lWeTeOD?language=en',
+  },
+  {
+    name: 'FAT CHEF Ballarat',
+    label: 'Ballarat',
+    menuPath: '/menu/ballarat',
+    bookingUrl:
+      'https://inline.app/booking/-MpdA6HeGgYZSaki4kNN:inline-live-2/-MpdA6vJ4vHs8l_eY5ZE',
+  },
+  {
+    name: 'FAT CHEF Carrum Downs',
+    label: 'Carrum Downs',
+    menuPath: '/menu/carrum-downs',
+    bookingUrl: 'https://inline.app/booking/-N4yy_yLsYeh5u1PXOnt:inline-live-2',
+  },
+];
+
+type OpenMenu = 'book' | 'menu' | null;
+
 function HeroSection() {
   const videoRef = useRef<HTMLVideoElement>(null);
-  const [isDropdownOpen, setDropdownOpen] = useState(false); // State for the dropdown
+  const ctasRef = useRef<HTMLDivElement>(null);
+  const [openMenu, setOpenMenu] = useState<OpenMenu>(null); // which dropdown is open
 
   useEffect(() => {
     if (videoRef.current) {
       videoRef.current.playbackRate = 0.5;
     }
   }, []);
+
+  // Touch devices never fire mouseleave, so close on any outside tap/click.
+  useEffect(() => {
+    if (!openMenu) return;
+    const handleOutside = (e: MouseEvent | TouchEvent) => {
+      if (ctasRef.current && !ctasRef.current.contains(e.target as Node)) {
+        setOpenMenu(null);
+      }
+    };
+    document.addEventListener('mousedown', handleOutside);
+    document.addEventListener('touchstart', handleOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleOutside);
+      document.removeEventListener('touchstart', handleOutside);
+    };
+  }, [openMenu]);
+
+  const toggle = (menu: Exclude<OpenMenu, null>) =>
+    setOpenMenu((current) => (current === menu ? null : menu));
 
   return (
     <header className="hero-section">
@@ -27,54 +73,73 @@ function HeroSection() {
           <h1 className="hero-title">FAT CHEF</h1>
           <p className="hero-tagline">Never Trust A Skinny Chef</p>
 
-          <div className="hero-ctas">
+          <div className="hero-ctas" ref={ctasRef}>
           {/* Book a Table button moved here */}
           <div
             className="book-a-table-wrapper"
-            onMouseEnter={() => setDropdownOpen(true)}
-            onMouseLeave={() => setDropdownOpen(false)}
+            onMouseEnter={() => setOpenMenu('book')}
+            onMouseLeave={() => setOpenMenu(null)}
           >
-            <button className="book-a-table-button">Book a Table</button>
-            {isDropdownOpen && (
-              <div className="book-a-table-dropdown">
-                <a 
-                  href="https://inline.app/booking/-Mpd7JG15ak_5in4-yoo:inline-live-2/-Mpd7JtCkSmw4lWeTeOD?language=en" 
-                  target="_blank" 
-                  rel="noopener noreferrer" 
-                  className="dropdown-item"
-                  onClick={() => logEvent('Booking', 'Click', 'Keilor East')}
-                >
-                  FAT CHEF Keilor East
-                </a>
-                <a 
-                  href="https://inline.app/booking/-MpdA6HeGgYZSaki4kNN:inline-live-2/-MpdA6vJ4vHs8l_eY5ZE" 
-                  target="_blank" 
-                  rel="noopener noreferrer" 
-                  className="dropdown-item"
-                  onClick={() => logEvent('Booking', 'Click', 'Ballarat')}
-                >
-                  FAT CHEF Ballarat
-                </a>
-                <a 
-                  href="https://inline.app/booking/-N4yy_yLsYeh5u1PXOnt:inline-live-2" 
-                  target="_blank" 
-                  rel="noopener noreferrer" 
-                  className="dropdown-item"
-                  onClick={() => logEvent('Booking', 'Click', 'Carrum Downs')}
-                >
-                  FAT CHEF Carrum Downs
-                </a>
+            <button
+              className="book-a-table-button"
+              onClick={() => toggle('book')}
+              aria-haspopup="true"
+              aria-expanded={openMenu === 'book'}
+            >
+              Book a Table
+            </button>
+            {openMenu === 'book' && (
+              <div className="book-a-table-dropdown" role="menu">
+                {LOCATIONS.map((loc) => (
+                  <a
+                    key={loc.name}
+                    href={loc.bookingUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="dropdown-item"
+                    onClick={() => {
+                      logEvent('Booking', 'Click', loc.label);
+                      setOpenMenu(null);
+                    }}
+                  >
+                    {loc.name}
+                  </a>
+                ))}
               </div>
             )}
           </div>
 
-          <a
-            href="/menu/keilor-east"
-            className="hero-view-menu-button"
-            onClick={() => logEvent('Navigation', 'Hero View Menu', 'Keilor East')}
+          <div
+            className="book-a-table-wrapper"
+            onMouseEnter={() => setOpenMenu('menu')}
+            onMouseLeave={() => setOpenMenu(null)}
           >
-            View Menu
-          </a>
+            <button
+              className="hero-view-menu-button"
+              onClick={() => toggle('menu')}
+              aria-haspopup="true"
+              aria-expanded={openMenu === 'menu'}
+            >
+              View Menu
+            </button>
+            {openMenu === 'menu' && (
+              <div className="book-a-table-dropdown" role="menu">
+                {LOCATIONS.map((loc) => (
+                  <Link
+                    key={loc.name}
+                    to={loc.menuPath}
+                    className="dropdown-item"
+                    onClick={() => {
+                      logEvent('Navigation', 'Hero View Menu', loc.label);
+                      setOpenMenu(null);
+                    }}
+                  >
+                    {loc.name}
+                  </Link>
+                ))}
+              </div>
+            )}
+          </div>
           </div>
 
         </div>

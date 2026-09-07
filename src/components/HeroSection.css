@@ -51,6 +51,7 @@
   display: flex;
   gap: 1rem;
   justify-content: center;
+  align-items: center;
   flex-wrap: wrap;
   margin-top: 0.5rem;
 }
@@ -66,9 +67,10 @@
   cursor: pointer;
   transition: all 0.3s ease;
   text-decoration: none;
+  font-family: inherit;
   display: inline-flex;
   align-items: center;
-  line-height: 1;
+  line-height: 1.5;
   box-shadow: 0 2px 6px rgba(0,0,0,0.2);
 }
 
