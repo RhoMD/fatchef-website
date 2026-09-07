@@ -10,7 +10,8 @@
  * Usage:
  *   GOOGLE_PLACES_API_KEY=xxx node scripts/fetch-reviews.js
  *
- * Runs in CI daily via .github/workflows/update-reviews.yml
+ * Run manually via .github/workflows/update-reviews.yml (Actions tab);
+ * the monthly schedule was turned off 2026-09-07.
  */
 
 const fs = require('fs');

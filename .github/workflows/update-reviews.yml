@@ -1,10 +1,10 @@
 name: Update Google Reviews
 
+# Scheduled runs turned off 2026-09-07 (owner request).
+# src/data/reviews.json now stays frozen at whatever the last run wrote;
+# run this workflow manually from the Actions tab to refresh it.
 on:
-  schedule:
-    # 1st of every month at 18:00 UTC (04:00 Melbourne AEST)
-    - cron: '0 18 1 * *'
-  workflow_dispatch: {} # allow manual run
+  workflow_dispatch: {} # manual run only
 
 permissions:
   contents: write
