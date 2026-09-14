@@ -1,0 +1,66 @@
+import React from 'react';
+import { TextEncoder, TextDecoder } from 'util';
+import { render, screen, fireEvent, within } from '@testing-library/react';
+Object.assign(global, { TextEncoder, TextDecoder });
+// CRA's Jest resolver predates React Router 7 package exports.
+jest.mock('react-router-dom', () => jest.requireActual('react-router'), { virtual: true });
+const { MemoryRouter, Link } = require('react-router-dom');
+const StickyMobileBar = require('./StickyMobileBar').default;
+jest.mock('../analytics', () => ({ logEvent: jest.fn() }));
+
+beforeAll(() => {
+  HTMLDialogElement.prototype.showModal = function () { this.setAttribute('open', ''); };
+  HTMLDialogElement.prototype.close = function () { this.removeAttribute('open'); };
+  Object.defineProperty(window, 'matchMedia', { writable: true, value: () => ({ matches: false, addEventListener: jest.fn(), removeEventListener: jest.fn() }) });
+});
+const mount = (path = '/') => render(<MemoryRouter initialEntries={[path]}><StickyMobileBar /><Link to="/menu/carrum-downs">Visit Carrum</Link><Link to="/">Home</Link></MemoryRouter>);
+
+test.each(['Call', 'Book', 'Menu', 'Find'])('%s offers all three correct destinations from home', label => {
+  mount();
+  fireEvent.click(screen.getByRole('button', { name: label }));
+  const sheet = within(screen.getByRole('dialog'));
+  const keilor = sheet.getByRole('link', { name: `${label} — Keilor East` });
+  const ballarat = sheet.getByRole('link', { name: `${label} — Ballarat` });
+  const carrum = sheet.getByRole('link', { name: `${label} — Carrum Downs` });
+  const expected: Record<string, string[]> = {
+    Call: ['tel:0393376385', 'tel:0353383188', 'tel:0397820618'],
+    Book: ['-Mpd7JG15ak_5in4-yoo', '-MpdA6HeGgYZSaki4kNN', '-N4yy_yLsYeh5u1PXOnt'],
+    Menu: ['/menu/keilor-east', '/menu/ballarat', '/menu/carrum-downs'],
+    Find: ['Keilor%20East', 'Ballarat', 'Carrum%20Downs'],
+  };
+  [keilor, ballarat, carrum].forEach((link, i) => expect(link.getAttribute('href')).toContain(expected[label][i]));
+  fireEvent.click(sheet.getByRole('button', { name: 'Close location picker' }));
+  expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
+  expect(document.body.style.overflow).toBe('');
+});
+
+test.each(['/menu/ballarat', '/promotion/ballarat'])('uses route store and switches corresponding page: %s', path => {
+  mount(path);
+  expect(screen.getByRole('link', { name: 'Call — Ballarat' })).toHaveAttribute('href', 'tel:0353383188');
+  fireEvent.click(screen.getByRole('button', { name: /Current location/ }));
+  fireEvent.click(within(screen.getByRole('dialog')).getByRole('button', { name: /Carrum Downs/ }));
+  expect(screen.getByRole('link', { name: 'Call — Carrum Downs' })).toHaveAttribute('href', 'tel:0397820618');
+  expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
+  fireEvent.click(screen.getByRole('link', { name: 'Home' }));
+  expect(screen.getByRole('button', { name: 'Call' })).toBeInTheDocument();
+});
+
+test('manual store selection applies all actions and route navigation overrides it', () => {
+  mount();
+  fireEvent.click(screen.getByRole('button', { name: /Choose a location/ }));
+  fireEvent.click(within(screen.getByRole('dialog')).getByRole('button', { name: /Ballarat/ }));
+  expect(screen.getByRole('link', { name: 'Menu — Ballarat' })).toHaveAttribute('href', '/menu/ballarat');
+  fireEvent.click(screen.getByRole('link', { name: 'Visit Carrum' }));
+  expect(screen.getByRole('link', { name: 'Menu — Carrum Downs' })).toHaveAttribute('href', '/menu/carrum-downs');
+});
+
+test('backdrop and Escape dismiss the picker without selecting a store', () => {
+  mount();
+  fireEvent.click(screen.getByRole('button', { name: 'Call' }));
+  fireEvent.click(screen.getByRole('dialog'));
+  expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
+  fireEvent.click(screen.getByRole('button', { name: 'Book' }));
+  fireEvent(screen.getByRole('dialog'), new Event('cancel', { bubbles: true }));
+  expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
+  expect(screen.getByRole('button', { name: 'Call' })).toBeInTheDocument();
+});
