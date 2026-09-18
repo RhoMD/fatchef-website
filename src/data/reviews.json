@@ -118,6 +118,34 @@
           "publishTime": "2026-02-16T00:46:34.392343109Z"
         }
       ]
+    },
+    "forest-hill": {
+      "placeId": "ChIJuT_HmEs_1moRL7zdcaHng0M",
+      "name": "FAT CHEF FOREST HILL",
+      "address": "Level 3, Shop 307/270 Canterbury Rd, Forest Hill VIC 3131",
+      "rating": 4.0,
+      "userRatingCount": 230,
+      "mapsUri": "https://www.google.com/maps/search/?api=1&query=FAT+CHEF+FOREST+HILL&query_place_id=ChIJuT_HmEs_1moRL7zdcaHng0M",
+      "fetchedAt": "2026-09-14",
+      "source": "Google Maps public review excerpts, manually verified in Chrome",
+      "reviews": [
+        {
+          "author": "Greg and Cara Francis",
+          "authorPhoto": null,
+          "rating": 5,
+          "text": "All in all very good, happy to come back.",
+          "timeAgo": "2 months ago · excerpt",
+          "publishTime": null
+        },
+        {
+          "author": "Nazanin R",
+          "authorPhoto": null,
+          "rating": 5,
+          "text": "I gave 5 stars overall, even though not every dish was perfect.",
+          "timeAgo": "9 months ago · excerpt",
+          "publishTime": null
+        }
+      ]
     }
   }
 }

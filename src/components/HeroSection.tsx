@@ -1,3 +1,4 @@
+import { FOREST_HILL, FOREST_HILL_LIVE } from '../data/forestHill';
 import React, { useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './HeroSection.css';
@@ -5,7 +6,7 @@ import './BookATable.css'; // Import styles for the button
 import heroVideo from '../assets/hero.mp4';
 import { logEvent } from '../analytics';
 
-import heroPoster from '../assets/hero-poster.jpg';
+import heroPoster from '../assets/hero-poster.webp';
 
 const LOCATIONS = [
   {
@@ -28,6 +29,7 @@ const LOCATIONS = [
     menuPath: '/menu/carrum-downs',
     bookingUrl: 'https://inline.app/booking/-N4yy_yLsYeh5u1PXOnt:inline-live-2',
   },
+  ...(FOREST_HILL_LIVE ? [{ name: FOREST_HILL.name, label: FOREST_HILL.shortName, menuPath: FOREST_HILL.menuPath, bookingUrl: FOREST_HILL.bookingUrl }] : []),
 ];
 
 type OpenMenu = 'book' | 'menu' | null;
@@ -39,7 +41,7 @@ function HeroSection() {
 
   useEffect(() => {
     if (videoRef.current) {
-      videoRef.current.playbackRate = 0.5;
+      videoRef.current.playbackRate = 1;
     }
   }, []);
 
@@ -64,15 +66,12 @@ function HeroSection() {
 
   return (
     <header className="hero-section">
-      <video ref={videoRef} className="hero-video" autoPlay loop muted poster={heroPoster}>
+      <video ref={videoRef} className="hero-video" autoPlay loop muted playsInline poster={heroPoster}>
         <source src={heroVideo} type="video/mp4" />
         Your browser does not support the video tag.
       </video>
       <div className="hero-overlay">
         <div className="hero-content text-center">
-          <h1 className="hero-title">FAT CHEF</h1>
-          <p className="hero-tagline">Never Trust A Skinny Chef</p>
-
           <div className="hero-ctas" ref={ctasRef}>
           {/* Book a Table button moved here */}
           <div

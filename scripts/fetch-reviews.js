@@ -27,6 +27,7 @@ const STORES = [
   { slug: 'keilor-east', query: 'FAT CHEF Keilor East, Milleara Road' },
   { slug: 'ballarat', query: 'FAT CHEF Ballarat, Alfredton, Bell Tower Inn' },
   { slug: 'carrum-downs', query: 'FAT CHEF Carrum Downs, Frankston Dandenong Road' },
+  { slug: 'forest-hill', query: 'FAT CHEF Forest Hill, Shop 307/270 Canterbury Road', placeId: 'ChIJuT_HmEs_1moRL7zdcaHng0M' },
 ];
 
 const BASE = 'https://places.googleapis.com/v1';
@@ -87,7 +88,7 @@ async function main() {
   for (const store of STORES) {
     try {
       console.log(`→ ${store.slug}: searching "${store.query}"...`);
-      const place = await searchPlace(store.query);
+      const place = store.placeId ? { id: store.placeId } : await searchPlace(store.query);
       console.log(`  found: ${place.displayName?.text} (id=${place.id})`);
 
       const details = await getPlaceDetails(place.id);

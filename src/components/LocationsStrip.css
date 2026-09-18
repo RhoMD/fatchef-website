@@ -28,13 +28,22 @@
 
 .locations-strip-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 2rem;
-  max-width: 1100px;
+  max-width: 1200px;
   margin: 0 auto;
   align-items: start;
   justify-items: center;
   padding: 1rem 0;
+}
+
+@media (min-width: 861px) and (max-width: 1100px) {
+  .locations-strip-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); max-width: 700px; }
+}
+
+/* Three published branches keep the original single row at every desktop width. */
+@media (min-width: 861px) {
+  .locations-strip-grid--3 { grid-template-columns: repeat(3, minmax(0, 1fr)); max-width: 1100px; }
 }
 
 @media (max-width: 860px) {

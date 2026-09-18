@@ -1,3 +1,4 @@
+import { FOREST_HILL, FOREST_HILL_LIVE, LOCATION_COUNT_WORD } from '../data/forestHill';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { HashLink } from 'react-router-hash-link';
@@ -55,6 +56,7 @@ const LOCATIONS: FooterLocation[] = [
       tiktok: '',
     },
   },
+  ...(FOREST_HILL_LIVE ? [{ name: FOREST_HILL.name, address: FOREST_HILL.venue + '\n' + FOREST_HILL.address, phone: FOREST_HILL.phone, hashId: FOREST_HILL.hashId, menuSlug: FOREST_HILL.slug, social: FOREST_HILL.social }] : []),
 ];
 
 function Footer() {
@@ -63,7 +65,7 @@ function Footer() {
   return (
     <footer className="footer-custom">
       <div className="container">
-        <div className="footer-grid">
+        <div className={`footer-grid footer-grid--${LOCATIONS.length}`}>
           {/* Brand column */}
           <div className="footer-brand">
             <img
@@ -75,8 +77,8 @@ function Footer() {
             />
             <p className="footer-tagline">Never Trust A Skinny Chef</p>
             <p className="footer-blurb">
-              Modern Australian food, generous portions, three family-friendly
-              locations across Victoria.
+              Modern Australian food, generous portions, {LOCATION_COUNT_WORD}{' '}
+              family-friendly locations across Victoria.
             </p>
           </div>
 

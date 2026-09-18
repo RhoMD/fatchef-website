@@ -1,3 +1,4 @@
+import { FOREST_HILL, FOREST_HILL_LIVE, LOCATION_COUNT_WORD } from '../data/forestHill';
 import React, { useState } from 'react';
 import { logEvent } from '../analytics';
 import './BookCTABanner.css';
@@ -15,6 +16,7 @@ const BOOKING_LINKS = [
     name: 'FAT CHEF Carrum Downs',
     url: 'https://inline.app/booking/-N4yy_yLsYeh5u1PXOnt:inline-live-2',
   },
+  ...(FOREST_HILL_LIVE ? [{ name: FOREST_HILL.name, url: FOREST_HILL.bookingUrl }] : []),
 ];
 
 function BookCTABanner() {
@@ -25,7 +27,7 @@ function BookCTABanner() {
       <div className="book-cta-inner">
         <h2 className="book-cta-headline">Ready to dine?</h2>
         <p className="book-cta-sub">
-          Reserve a table at any of our three locations across Victoria.
+          Reserve a table at any of our {LOCATION_COUNT_WORD} locations across Victoria.
         </p>
         <div
           className="book-cta-button-wrap"

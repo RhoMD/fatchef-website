@@ -1,3 +1,5 @@
+import { FOREST_HILL, FOREST_HILL_LIVE } from './data/forestHill';
+import ForestHillPage from './components/ForestHillPage';
 import React, { Suspense } from 'react';
 import './App.css';
 import HeroSection from './components/HeroSection';
@@ -67,6 +69,7 @@ function App() {
                     <li><HashLink className="dropdown-item" to="/locations#keilor-east-location">FAT CHEF Keilor East</HashLink></li>
                     <li><HashLink className="dropdown-item" to="/locations#ballarat-location">FAT CHEF Ballarat</HashLink></li>
                     <li><HashLink className="dropdown-item" to="/locations#carrum-downs-location">FAT CHEF Carrum Downs</HashLink></li>
+                    {FOREST_HILL_LIVE && <li><HashLink className="dropdown-item" to={`/locations#${FOREST_HILL.hashId}`}>{FOREST_HILL.name}</HashLink></li>}
                   </ul>
                 </li>
                 <li className="nav-item dropdown">
@@ -77,6 +80,7 @@ function App() {
                     <li><Link className="dropdown-item" to="/menu/keilor-east">FAT CHEF Keilor East</Link></li> {/* Use Link for routing */}
                     <li><Link className="dropdown-item" to="/menu/ballarat">FAT CHEF Ballarat</Link></li>
                     <li><Link className="dropdown-item" to="/menu/carrum-downs">FAT CHEF Carrum Downs</Link></li>
+                    {FOREST_HILL_LIVE && <li><Link className="dropdown-item" to="/menu/forest-hill">{FOREST_HILL.name}</Link></li>}
                   </ul>
                 </li>
                 <li className="nav-item dropdown">
@@ -87,6 +91,7 @@ function App() {
                     <li><Link className="dropdown-item" to="/promotion/keilor-east">FAT CHEF Keilor East</Link></li>
                     <li><Link className="dropdown-item" to="/promotion/ballarat">FAT CHEF Ballarat</Link></li>
                     <li><Link className="dropdown-item" to="/promotion/carrum-downs">FAT CHEF Carrum Downs</Link></li>
+                    {FOREST_HILL_LIVE && <li><Link className="dropdown-item" to="/promotion/forest-hill">{FOREST_HILL.name}</Link></li>}
                   </ul>
                 </li>
                 <li className="nav-item dropdown">
@@ -109,6 +114,7 @@ function App() {
                     <li><a className="dropdown-item" href="https://inline.app/booking/-Mpd7JG15ak_5in4-yoo:inline-live-2/-Mpd7JtCkSmw4lWeTeOD?language=en" target="_blank" rel="noopener noreferrer">FAT CHEF Keilor East</a></li>
                     <li><a className="dropdown-item" href="https://inline.app/booking/-MpdA6HeGgYZSaki4kNN:inline-live-2/-MpdA6vJ4vHs8l_eY5ZE" target="_blank" rel="noopener noreferrer">FAT CHEF Ballarat</a></li>
                     <li><a className="dropdown-item" href="https://inline.app/booking/-N4yy_yLsYeh5u1PXOnt:inline-live-2" target="_blank" rel="noopener noreferrer">FAT CHEF Carrum Downs</a></li>
+                    {FOREST_HILL_LIVE && <li><a className="dropdown-item" href={FOREST_HILL.bookingUrl} target="_blank" rel="noopener noreferrer">{FOREST_HILL.name}</a></li>}
                   </ul>
                 </li>
               </ul>
@@ -129,6 +135,9 @@ function App() {
           <Route path="/promotion/keilor-east" element={<KeilorEastPromotion />} />
           <Route path="/promotion/ballarat" element={<BallaratPromotion />} />
           <Route path="/promotion/carrum-downs" element={<CarrumDownsPromotion />} />
+          {/* Unlinked while FOREST_HILL_LIVE is false — preview only. */}
+          <Route path="/menu/forest-hill" element={<ForestHillPage mode="menu" />} />
+          <Route path="/promotion/forest-hill" element={<ForestHillPage mode="promotion" />} />
         </Routes>
         <Footer />
         <StickyMobileBar />

@@ -178,3 +178,61 @@
     text-align: center;
   }
 }
+
+/* ------------------------------------------------------------------
+   Four-branch footer.
+   Only applies while FOREST_HILL_LIVE publishes a fourth location
+   (src/data/forestHill.ts); Footer.tsx sets .footer-grid--<count>.
+   With three branches the footer above stays exactly as published.
+   ------------------------------------------------------------------ */
+
+.footer-grid--4 .footer-brand {
+  grid-column: 1 / -1;
+}
+
+@media (min-width: 901px) {
+  .footer-grid--4 {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 561px) {
+  .footer-grid--4 {
+    row-gap: 0;
+  }
+
+  .footer-grid--4 .footer-brand {
+    margin-bottom: 2.5rem;
+  }
+
+  /* Align name / address / phone / links / socials across all four columns. */
+  .footer-grid--4 .footer-location {
+    display: grid;
+    grid-row: span 5;
+    grid-template-rows: subgrid;
+    row-gap: 0;
+  }
+
+  .footer-grid--4 .footer-address {
+    min-height: 4.2em; /* Reserve three lines; longer addresses expand the shared row. */
+  }
+
+  .footer-grid--4 .footer-phone {
+    margin-bottom: 0;
+  }
+
+  .footer-grid--4 .footer-location-links {
+    margin: 0;
+    line-height: 1.4;
+  }
+
+  .footer-grid--4 .footer-location .social-links-container {
+    margin: 0;
+  }
+}
+
+@media (min-width: 561px) and (max-width: 900px) {
+  .footer-grid--4 .footer-location:nth-child(n + 4) {
+    margin-top: 2rem;
+  }
+}

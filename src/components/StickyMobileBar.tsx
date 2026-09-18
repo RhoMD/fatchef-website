@@ -1,3 +1,4 @@
+import { FOREST_HILL, FOREST_HILL_LIVE } from '../data/forestHill';
 import React, { useEffect, useRef, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { FiPhone, FiCalendar, FiBookOpen, FiMapPin } from 'react-icons/fi';
@@ -5,9 +6,11 @@ import { logEvent } from '../analytics';
 import './StickyMobileBar.css';
 
 const STORES = [
+  // Each branch keeps its own contact and booking destination.
   { slug: 'keilor-east', name: 'Keilor East', address: 'Unit 16/235 Milleara Rd', phone: '0393376385', bookingUrl: 'https://inline.app/booking/-Mpd7JG15ak_5in4-yoo:inline-live-2/-Mpd7JtCkSmw4lWeTeOD?language=en' },
   { slug: 'ballarat', name: 'Ballarat', address: '1845 Sturt St, Alfredton', phone: '0353383188', bookingUrl: 'https://inline.app/booking/-MpdA6HeGgYZSaki4kNN:inline-live-2/-MpdA6vJ4vHs8l_eY5ZE' },
   { slug: 'carrum-downs', name: 'Carrum Downs', address: '1095 Frankston-Dandenong Rd', phone: '0397820618', bookingUrl: 'https://inline.app/booking/-N4yy_yLsYeh5u1PXOnt:inline-live-2' },
+  ...(FOREST_HILL_LIVE ? [{ slug: FOREST_HILL.slug, name: FOREST_HILL.shortName, address: FOREST_HILL.shortAddress, phone: FOREST_HILL.phoneDigits, bookingUrl: FOREST_HILL.bookingUrl }] : []),
 ];
 type Store = typeof STORES[number];
 const ACTIONS = [
@@ -78,7 +81,7 @@ function StickyMobileBar() {
     <>
       <nav className="sticky-mobile-bar" aria-label="Quick actions">
         <button className="smb-location" onClick={() => setPicker('switch')} aria-haspopup="dialog">
-          {current ? <>Current location: <strong>{current.name}</strong><span>Change</span></> : <>Choose a location <span>3 locations</span></>}
+          {current ? <>Current location: <strong>{current.name}</strong><span>Change</span></> : <>Choose a location <span>{STORES.length} locations</span></>}
         </button>
         <div className="smb-actions">
           {ACTIONS.map(action => {

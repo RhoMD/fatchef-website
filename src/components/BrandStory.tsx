@@ -1,3 +1,4 @@
+import { LOCATION_COUNT_WORD_TITLE } from '../data/forestHill';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import storefront from '../assets/storefront-keilor-east.jpg';
@@ -22,7 +23,7 @@ function BrandStory() {
               Modern Australian, made generously.
             </h3>
             <p className="brand-story-body">
-              Three Victoria locations. One generous welcome. Big plates,
+              {LOCATION_COUNT_WORD_TITLE} Victoria locations. One generous welcome. Big plates,
               honest cooking and the kind of place where you stay for one
               more drink.
             </p>

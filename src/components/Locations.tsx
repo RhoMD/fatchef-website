@@ -1,3 +1,4 @@
+import { FOREST_HILL, FOREST_HILL_LIVE } from '../data/forestHill';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './Locations.css';
@@ -14,7 +15,9 @@ interface LocationBlockProps {
   phone: string;
   tradingHours: string;
   googleMapsLink: string;
-  orderOnlineLink: string;
+  orderOnlineLink?: string;
+  bookingUrl?: string;
+  hoursUrl?: string;
   id?: string;
   showReviews?: boolean;
   socialLinks: {
@@ -24,7 +27,7 @@ interface LocationBlockProps {
   };
 }
 
-const LocationBlock = ({ name, slug, address, phone, tradingHours, googleMapsLink, orderOnlineLink, id, socialLinks, showReviews }: LocationBlockProps) => (
+const LocationBlock = ({ name, slug, address, phone, tradingHours, googleMapsLink, orderOnlineLink, id, socialLinks, showReviews, bookingUrl, hoursUrl }: LocationBlockProps) => (
   <>
   <div className="location-block" id={id}>
     {/* Map Placeholder Column (now a direct grid item) */}
@@ -48,7 +51,7 @@ const LocationBlock = ({ name, slug, address, phone, tradingHours, googleMapsLin
     </div>
     <SocialLinks {...socialLinks} />
       <div className="trading-hours">
-        <p className="trading-hours-text">{tradingHours}</p>
+        <p className="trading-hours-text">{hoursUrl ? <a href={hoursUrl} target="_blank" rel="noopener noreferrer">{tradingHours}</a> : tradingHours}</p>
       </div>
       <p className="location-address">{address}</p>
       <p className="location-phone">
@@ -76,7 +79,8 @@ const LocationBlock = ({ name, slug, address, phone, tradingHours, googleMapsLin
         >
           Promotions
         </Link>
-        <a
+        {bookingUrl && <a href={bookingUrl} className="location-action-btn location-action-secondary" target="_blank" rel="noopener noreferrer">Book a Table</a>}
+        {orderOnlineLink && <a
           href={orderOnlineLink}
           className="location-action-btn location-action-secondary"
           target="_blank"
@@ -84,7 +88,7 @@ const LocationBlock = ({ name, slug, address, phone, tradingHours, googleMapsLin
           onClick={() => logEvent('Order', 'Order Online', name)}
         >
           Order Online
-        </a>
+        </a>}
         <a
           href={googleMapsLink}
           className="location-action-btn location-action-outline"
@@ -149,6 +153,7 @@ function Locations({ showReviews }: LocationsProps = {}) {
         tiktok: ""
       }
     },
+    ...(FOREST_HILL_LIVE ? [{ name: FOREST_HILL.name, slug: FOREST_HILL.slug, address: FOREST_HILL.venue + '\n' + FOREST_HILL.address, phone: FOREST_HILL.phone, tradingHours: FOREST_HILL.hoursNote, hoursUrl: FOREST_HILL.mapsUrl, googleMapsLink: FOREST_HILL.mapsUrl, bookingUrl: FOREST_HILL.bookingUrl, socialLinks: FOREST_HILL.social }] : []),
   ];
 
   const getLocationId = (index: number) => {
@@ -156,6 +161,7 @@ function Locations({ showReviews }: LocationsProps = {}) {
       case 0: return "keilor-east-location";
       case 1: return "ballarat-location";
       case 2: return "carrum-downs-location";
+      case 3: return FOREST_HILL.hashId;
       default: return `location-${index}`;
     }
   };

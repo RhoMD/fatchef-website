@@ -5,6 +5,8 @@
     <link rel="icon" href="%PUBLIC_URL%/logo.jpg" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
+    <!-- When FOREST_HILL_LIVE is turned on (src/data/forestHill.ts), restore the
+         four-branch wording: "... Keilor East, Ballarat, Carrum Downs and Forest Hill, Victoria." -->
     <meta
       name="description"
       content="FAT CHEF — Never Trust A Skinny Chef. Modern Australian dining in Keilor East, Ballarat and Carrum Downs, Victoria. Book a table or order online."
@@ -89,6 +91,29 @@
       "url": "/"
     }
     </script>
+    <!-- Forest Hill is not published yet. Un-comment together with
+         FOREST_HILL_LIVE = true in src/data/forestHill.ts.
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Restaurant",
+      "name": "FAT CHEF Forest Hill",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Level 3, Shop 307/270 Canterbury Rd",
+        "addressLocality": "Forest Hill",
+        "addressRegion": "VIC",
+        "postalCode": "3131",
+        "addressCountry": "AU"
+      },
+      "telephone": "+61398726636",
+      "servesCuisine": "Modern Australian",
+      "url": "https://fatchef.au/locations#forest-hill-location",
+      "hasMap": "https://www.google.com/maps/search/?api=1&query=FAT+CHEF+FOREST+HILL&query_place_id=ChIJuT_HmEs_1moRL7zdcaHng0M",
+      "acceptsReservations": "https://www.google.com/maps/reserve/v/dine/c/_FRoRZdyNho?hl=en-AU"
+    }
+    </script>
+    -->
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>

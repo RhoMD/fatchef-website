@@ -1,3 +1,4 @@
+import { FOREST_HILL, FOREST_HILL_LIVE, LOCATION_COUNT_WORD_TITLE } from '../data/forestHill';
 import React from 'react';
 import { HashLink } from 'react-router-hash-link';
 import { FiMapPin } from 'react-icons/fi';
@@ -46,6 +47,7 @@ const LOCATIONS: StripLocation[] = [
     swatch: 'linear-gradient(135deg, #a8b687 0%, #8a9a6f 100%)',
     pinColor: '#C84B31',
   },
+  ...(FOREST_HILL_LIVE ? [{ name: FOREST_HILL.name, shortName: FOREST_HILL.shortName, suburb: FOREST_HILL.shortAddress, hours: 'View location & opening hours', hashId: FOREST_HILL.hashId, rotate: 2, swatch: 'linear-gradient(135deg, #8eabb4 0%, #5c7d89 100%)', pinColor: '#3B2E2A' }] : []),
 ];
 
 function LocationsStrip() {
@@ -53,10 +55,10 @@ function LocationsStrip() {
     <section className="locations-strip" id="locations">
       <div className="locations-strip-header">
         <h2>Find Your FAT CHEF</h2>
-        <p>Three Victoria locations. One generous welcome.</p>
+        <p>{LOCATION_COUNT_WORD_TITLE} Victoria locations. One generous welcome.</p>
       </div>
 
-      <div className="locations-strip-grid">
+      <div className={`locations-strip-grid locations-strip-grid--${LOCATIONS.length}`}>
         {LOCATIONS.map((loc) => (
           <HashLink
             key={loc.hashId}

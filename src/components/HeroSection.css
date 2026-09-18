@@ -1,6 +1,11 @@
 .hero-section {
   position: relative;
-  height: 60vh;
+  width: 100%;
+  /* Match the promo video's 16:9 frame: its burned-in title and footer bar sit
+     close to the edges, so a taller hero would crop them away. */
+  aspect-ratio: 16 / 9;
+  max-height: 92vh;
+  min-height: 240px;
   color: white;
   overflow: hidden;
 }
@@ -11,7 +16,10 @@
   left: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  /* contain, not cover: on very tall viewports the 16:9 box is clamped by
+     max-height, and cropping would eat the video's burned-in title bar. */
+  object-fit: contain;
+  background-color: #2A2A2A; /* fills the letterbox strips when clamped */
   z-index: -1;
 }
 
@@ -21,30 +29,11 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(42, 42, 42, 0.5); /* Using the #2A2A2A dark gray with transparency */
+  /* Light scrim only — the video carries the branding, so it stays readable. */
+  background: rgba(42, 42, 42, 0.28);
   display: flex;
   justify-content: center;
   align-items: center; /* Changed from flex-start to center */
-}
-
-.hero-title {
-  /* Using a generic bold serif font for now. We'll set a specific one globally later. */
-  font-family: 'Georgia', 'Times New Roman', Times, serif;
-  font-weight: 700;
-  font-size: 5rem; /* Huge, 醒目 title */
-  color: white;
-  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
-  margin-bottom: 0.5rem;
-}
-
-.hero-tagline {
-  font-family: 'Georgia', 'Times New Roman', Times, serif;
-  font-style: italic;
-  font-size: 1.5rem;
-  color: rgba(255, 255, 255, 0.95);
-  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);
-  letter-spacing: 1px;
-  margin-bottom: 1.5rem;
 }
 
 .hero-ctas {
@@ -80,15 +69,6 @@
   text-decoration: none;
 }
 
-@media (max-width: 480px) {
-  .hero-tagline {
-    font-size: 1.1rem;
-  }
-  .hero-title {
-    font-size: 3.2rem;
-  }
-}
-
 .hero-button {
   /* White button with black border, as per description */
   background-color: white;
@@ -107,4 +87,29 @@
   /* Hover effect: color inversion */
   background-color: #2A2A2A;
   color: white;
+}
+
+/* Phones: a 16:9 promo frame overlaid with buttons gets cramped, so the video
+   keeps its own frame and the buttons sit on a dark strip underneath it. */
+@media (max-width: 700px) {
+  .hero-section {
+    aspect-ratio: auto;
+    max-height: none;
+    min-height: 0;
+    background-color: #2A2A2A;
+  }
+
+  .hero-video {
+    position: static;
+    z-index: auto;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+  }
+
+  .hero-overlay {
+    position: static;
+    background: transparent;
+    padding: 1.25rem 1rem 1.5rem;
+  }
 }

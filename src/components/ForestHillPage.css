@@ -1,0 +1,16 @@
+.forest-hill-page { min-height: 65vh; padding: 4rem 1rem; background: #faf7f2; }
+.forest-hill-card { max-width: 760px; margin: auto; padding: clamp(24px, 5vw, 56px); border: 1px solid #e0d6c0; border-radius: 20px; background: #fffdf8; color: #2a2a2a; }
+.forest-hill-eyebrow { color: #795928; font-weight: 700; letter-spacing: 0.12em; font-size: 0.8rem; }
+.forest-hill-card h1 { font-size: clamp(1.8rem, 4vw, 2.6rem); line-height: 1.2; margin-bottom: 20px; }
+.forest-hill-intro { color: #625b50; font-size: 1.1rem; }
+.forest-hill-note { margin: 28px 0; padding: 28px 20px; background: #f5eddd; border: 1px dashed #b8a078; border-radius: 12px; text-align: center; }
+.forest-hill-placeholder-icon { display: block; margin-bottom: 12px; color: #795928; font-size: 2rem; line-height: 1; }
+.forest-hill-note h2 { font-size: 1.2rem; }
+.forest-hill-note p { margin-bottom: 0; line-height: 1.6; }
+.forest-hill-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 28px; }
+.forest-hill-actions a { display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: 12px 20px; border: 1px solid #a5843e; border-radius: 30px; color: #2a2a2a; font-weight: 600; text-decoration: none; }
+.forest-hill-actions .forest-hill-primary { background: #e7c97f; }
+.forest-hill-actions a:hover { background: #f5eddd; }
+.forest-hill-map { color: #75521f; text-underline-offset: 3px; }
+.forest-hill-parking { margin-top: 20px; font-size: 0.9rem; color: #625b50; line-height: 1.6; }
+@media (max-width: 480px) { .forest-hill-page { padding: 2rem 1rem; } .forest-hill-actions a { width: 100%; } }

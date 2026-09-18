@@ -1,3 +1,4 @@
+import { LOCATION_COUNT_WORD_TITLE } from '../data/forestHill';
 import React from 'react';
 import Locations from './Locations';
 import ReviewCarousel from './ReviewCarousel';
@@ -11,7 +12,7 @@ function LocationsPage() {
     <div className="locations-page">
       <header className="locations-page-header">
         <h1>Find Your FAT CHEF</h1>
-        <p>Three locations across Victoria. Drop in, book ahead, or order online.</p>
+        <p>{LOCATION_COUNT_WORD_TITLE} locations across Victoria. Drop in, book ahead, or order online.</p>
       </header>
 
       <Locations showReviews />

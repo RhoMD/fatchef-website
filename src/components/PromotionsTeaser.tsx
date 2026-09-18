@@ -1,3 +1,4 @@
+import { FOREST_HILL, FOREST_HILL_LIVE } from '../data/forestHill';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { logEvent } from '../analytics';
@@ -7,6 +8,7 @@ const STORES = [
   { name: 'Keilor East', slug: 'keilor-east' },
   { name: 'Ballarat', slug: 'ballarat' },
   { name: 'Carrum Downs', slug: 'carrum-downs' },
+  ...(FOREST_HILL_LIVE ? [{ name: FOREST_HILL.shortName, slug: FOREST_HILL.slug }] : []),
 ];
 
 function PromotionsTeaser() {
