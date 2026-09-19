@@ -12,16 +12,16 @@ import './PhotoGallery.css';
 import { Autoplay, EffectFade } from 'swiper/modules'; // Import EffectFade
 
 // Import images
-import g1 from '../assets/g1.jpg';
-import g2 from '../assets/g2.jpg';
-import g3 from '../assets/g3.jpg';
-import g4 from '../assets/g4.jpg';
-import g5 from '../assets/g5.jpg';
-import g6 from '../assets/g6.jpg';
-import g7 from '../assets/g7.jpg';
-import g8 from '../assets/g8.jpg';
-import g9 from '../assets/g9.jpg';
-import g10 from '../assets/g10.jpg';
+import g1 from '../assets/g1.webp';
+import g2 from '../assets/g2.webp';
+import g3 from '../assets/g3.webp';
+import g4 from '../assets/g4.webp';
+import g5 from '../assets/g5.webp';
+import g6 from '../assets/g6.webp';
+import g7 from '../assets/g7.webp';
+import g8 from '../assets/g8.webp';
+import g9 from '../assets/g9.webp';
+import g10 from '../assets/g10.webp';
 
 const images = [
   { src: g1, alt: "A delicious dish from FAT CHEF restaurant" },

@@ -1,7 +1,7 @@
 import { LOCATION_COUNT_WORD_TITLE } from '../data/forestHill';
 import React from 'react';
 import { Link } from 'react-router-dom';
-import storefront from '../assets/storefront-keilor-east.jpg';
+import storefront from '../assets/storefront-keilor-east.webp';
 import { logEvent } from '../analytics';
 import './BrandStory.css';
 
