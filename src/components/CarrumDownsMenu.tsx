@@ -11,14 +11,6 @@ const CarrumDownsMenu: React.FC = () => {
         <p className="carrum-menu-kicker">FAT CHEF CARRUM DOWNS</p>
         <h1>Food Menu</h1>
         <p>Big feeds, family favourites and plenty to share.</p>
-        <a
-          className="carrum-menu-pdf-link"
-          href="/assets/fat-chef-carrum-downs-food-menu.pdf"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Open PDF menu
-        </a>
       </header>
 
       <div className="carrum-menu-pages" aria-label="FAT CHEF Carrum Downs food menu">

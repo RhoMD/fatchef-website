@@ -33,27 +33,6 @@
   font-size: 1.05rem;
 }
 
-.carrum-menu-pdf-link {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 44px;
-  padding: 0.7rem 1.4rem;
-  border: 1px solid #2a2a2a;
-  border-radius: 999px;
-  color: #2a2a2a;
-  font-weight: 700;
-  text-decoration: none;
-  transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
-}
-
-.carrum-menu-pdf-link:hover,
-.carrum-menu-pdf-link:focus-visible {
-  background: #2a2a2a;
-  color: #e7c97f;
-  transform: translateY(-1px);
-}
-
 .carrum-menu-pages {
   display: grid;
   gap: 2rem;
