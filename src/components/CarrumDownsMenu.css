@@ -1,0 +1,101 @@
+.carrum-menu-page {
+  min-height: 100vh;
+  padding: 4rem 1rem 5rem;
+  background:
+    radial-gradient(circle at 10% 0%, rgba(231, 201, 127, 0.16), transparent 28rem),
+    #f4f2ee;
+}
+
+.carrum-menu-header {
+  max-width: 900px;
+  margin: 0 auto 2.5rem;
+  text-align: center;
+}
+
+.carrum-menu-kicker {
+  margin: 0 0 0.6rem;
+  color: #9b4b25;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.24em;
+}
+
+.carrum-menu-header h1 {
+  margin: 0;
+  color: #2a2a2a;
+  font-size: clamp(2.2rem, 6vw, 4.2rem);
+  line-height: 1;
+}
+
+.carrum-menu-header > p:not(.carrum-menu-kicker) {
+  margin: 1rem auto 1.5rem;
+  color: #67615b;
+  font-size: 1.05rem;
+}
+
+.carrum-menu-pdf-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 0.7rem 1.4rem;
+  border: 1px solid #2a2a2a;
+  border-radius: 999px;
+  color: #2a2a2a;
+  font-weight: 700;
+  text-decoration: none;
+  transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+
+.carrum-menu-pdf-link:hover,
+.carrum-menu-pdf-link:focus-visible {
+  background: #2a2a2a;
+  color: #e7c97f;
+  transform: translateY(-1px);
+}
+
+.carrum-menu-pages {
+  display: grid;
+  gap: 2rem;
+  width: min(100%, 1440px);
+  margin: 0 auto;
+}
+
+.carrum-menu-sheet {
+  margin: 0;
+  overflow: hidden;
+  border: 1px solid rgba(42, 42, 42, 0.1);
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 18px 45px rgba(42, 42, 42, 0.12);
+}
+
+.carrum-menu-sheet img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+@media (max-width: 760px) {
+  .carrum-menu-page {
+    padding: 2.5rem 0.5rem 3rem;
+  }
+
+  .carrum-menu-header {
+    padding: 0 0.75rem;
+    margin-bottom: 1.75rem;
+  }
+
+  .carrum-menu-header > p:not(.carrum-menu-kicker) {
+    font-size: 0.95rem;
+  }
+
+  .carrum-menu-pages {
+    gap: 1rem;
+  }
+
+  .carrum-menu-sheet {
+    border-radius: 7px;
+    box-shadow: 0 10px 25px rgba(42, 42, 42, 0.1);
+  }
+}
