@@ -108,16 +108,6 @@ function Footer() {
           <p className="copyright-text">
             &copy; {currentYear} FAT CHEF. All Rights Reserved.
           </p>
-          <p className="footer-credit">
-            Website by{' '}
-            <a
-              href="https://websitesfactory.com.au"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Websites Factory
-            </a>
-          </p>
         </div>
       </div>
     </footer>
